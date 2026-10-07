@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Your Name] | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --panel: #1f2937;
+      --panel-alt: #e5e7eb;
+      --text: #f8fafc;
+      --text-dark: #0f172a;
+      --muted: #cbd5e1;
+      --accent: #38bdf8;
+      --accent-2: #a78bfa;
+      --success: #34d399;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, var(--bg) 0%, #020817 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 6rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      line-height: 1.05;
+      margin: 0 0 1rem;
+      letter-spacing: -0.05em;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 620px;
+      font-size: 1.08rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #08111f;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .profile-card {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-image {
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #1e293b, #334155);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 1.2rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .profile-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      padding-top: 1rem;
+    }
+
+    .meta-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .meta-item strong {
+      color: var(--text);
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.04em;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 2rem;
+    }
+
+    .about-grid,
+    .grid-3,
+    .grid-2 {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .about-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    .card {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .facts {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .fact {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+    }
+
+    .fact strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1.05rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .skill-card, .project-card, .timeline-item, .edu-card {
+      background: rgba(17, 24, 39, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .skill-card h3, .project-card h3, .edu-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.45rem 0.7rem;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .mini-link {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 0.8rem;
+      top: 1.4rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(56, 189, 248, 0.15);
+    }
+
+    .timeline-date {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .timeline-item h3, .edu-card h3 {
+      margin: 0 0 0.35rem;
+    }
+
+    .timeline-item p, .edu-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, rgba(56,189,248,0.12), rgba(167,139,250,0.1));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-box h3 {
+      margin: 0 0 0.3rem;
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+    }
+
+    .contact-box p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid, .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 0.8rem;
+        font-size: 0.9rem;
+      }
+      .logo {
+        font-size: 1rem;
+      }
+      .btn-row {
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+      .contact-box {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#top" class="logo">[YOUR NAME]</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">[Your Title / Role]</div>
+          <h1>Hello, I'm <span class="highlight">[Your Name]</span></h1>
+          <p class="subtitle">
+            I am a [your profession/discipline] passionate about [your focus area].
+            I build creative solutions, solve problems with purpose, and turn ideas into meaningful work.
+          </p>
+
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#projects">View My Work</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-image">
+            [Your Photo / Professional Headshot]
+          </div>
+          <div class="profile-meta">
+            <div class="meta-item"><span>Location</span><strong>[City, Country]</strong></div>
+            <div class="meta-item"><span>Available</span><strong>[Open to Work / Student / Freelance]</strong></div>
+            <div class="meta-item"><span>Email</span><strong>[your.email@example.com]</strong></div>
+            <div class="meta-item"><span>Portfolio</span><strong>[yourportfolio.com]</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-intro">
+          I am a [student/professional/creative] with a strong interest in [your field or interests].
+          I enjoy learning, creating, and applying practical solutions to real-world challenges.
+        </p>
+
+        <div class="about-grid">
+          <div class="card">
+            <p>
+              I am currently [e.g., a second-year student at ...], where I am developing my skills in
+              [area 1], [area 2], and [area 3]. My work combines creativity, technical thinking,
+              and problem-solving to create work that is both useful and engaging.
+            </p>
+          </div>
+
+          <div class="facts">
+            <div class="fact">
+              <strong>Focus</strong>
+              [Your key area of expertise]
+            </div>
+            <div class="fact">
+              <strong>Interests</strong>
+              [Topic 1], [Topic 2], [Topic 3]
+            </div>
+            <div class="fact">
+              <strong>Goal</strong>
+              To contribute to [your target field or cause]
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-intro">
+          I have developed skills in the following areas through coursework, projects, and hands-on experience.
+        </p>
+
+        <div class="grid-3">
+          <div class="skill-card">
+            <h3>Technical Skills</h3>
+            <p>
+              [Skill 1], [Skill 2], [Skill 3], [Skill 4]
+            </p>
+            <div class="tags">
+              <span class="tag">[Tool/Skill]</span>
+              <span class="tag">[Tool/Skill]</span>
+              <span class="tag">[Tool/Skill]</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3>Creative Skills</h3>
+            <p>
+              [Communication, Design, Storytelling, Branding, Visual Thinking]
+            </p>
+            <div class="tags">
+              <span class="tag">[Skill]</span>
+              <span class="tag">[Skill]</span>
+              <span class="tag">[Skill]</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3>Professional Skills</h3>
+            <p>
+              Collaboration, project planning, research, presentation, time management
+            </p>
+            <div class="tags">
+              <span class="tag">Leadership</span>
+              <span class="tag">Research</span>
+              <span class="tag">Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-intro">
+          These projects reflect my work, interests, and ability to solve problems creatively and effectively.
+        </p>
+
+        <div class="grid-2">
+          <article class="project-card">
+            <h3>[Project Name 1]</h3>
+            <p>
+              A [brief project description]. The project focused on [goal/problem], and I designed
+              and developed [solution/outcome].
+            </p>
+            <div class="tags">
+              <span class="tag">[Technology]</span>
+              <span class="tag">[Method]</span>
+              <span class="tag">[Skill]</span>
+            </div>
+            <div class="project-links">
+              <a class="mini-link" href="[Project Link]">Live Demo</a>
+              <a class="mini-link" href="[GitHub Link]">GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <h3>[Project Name 2]</h3>
+            <p>
+              This project involved [brief description]. I was responsible for [your role or tasks],
+              and the result helped [impact or outcome].
+            </p>
+            <div class="tags">
+              <span class="tag">[Technology]</span>
+              <span class="tag">[Framework]</span>
+              <span class="tag">[Discipline]</span>
+            </div>
+            <div class="project-links">
+              <a class="mini-link" href="[Project Link]">Case Study</a>
+              <a class="mini-link" href="[GitHub Link]">Repository</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <h3>[Project Name 3]</h3>
+            <p>
+              I developed this [solution, app, design system, research project] to address [problem].
+              It demonstrates my work in [relevant skill area].
+            </p>
+            <div class="tags">
+              <span class="tag">[Tool]</span>
+              <span class="tag">[Method]</span>
+              <span class="tag">[Skill]</span>
+            </div>
+            <div class="project-links">
+              <a class="mini-link" href="[Project Link]">View Project</a>
+              <a class="mini-link" href="[GitHub Link]">Code</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <h3>[Project Name 4]</h3>
+            <p>
+              This project reflects my ability to [describe specific capability]. It was created to
+              [problem solved or value delivered].
+            </p>
+            <div class="tags">
+              <span class="tag">[Concept]</span>
+              <span class="tag">[Technology]</span>
+              <span class="tag">[Outcome]</span>
+            </div>
+            <div class="project-links">
+              <a class="mini-link" href="[Project Link]">Learn More</a>
+              <a class="mini-link" href="[GitHub Link]">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-intro">
+          My experience has helped me strengthen both my technical skills and my ability to work effectively in teams and projects.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">[Month Year] – [Month Year]</div>
+            <h3>[Job Title / Role]</h3>
+            <p><strong>[Company / Organisation]</strong></p>
+            <p>
+              Responsibilities included [responsibility 1], [responsibility 2], and [responsibility 3].
+              I contributed to [result or impact].
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">[Month Year] – [Month Year]</div>
+            <h3>[Internship / Volunteer Role]</h3>
+            <p><strong>[Organisation Name]</strong></p>
+            <p>
+              I supported [task or initiative], collaborated with [team group], and developed
+              skills in [relevant area].
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">[Month Year] – [Month Year]</div>
+            <h3>[Leadership / Club / Project Title]</h3>
+            <p><strong>[Organisation / Team]</strong></p>
+            <p>
+              I led or contributed to [initiative] by coordinating [activity], managing [responsibility],
+              and helping the team achieve [outcome].
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="grid-2">
+          <div class="edu-card">
+            <h3>[Degree / Program]</h3>
+            <p><strong>[University / Institution]</strong></p>
+            <p>[Year Started] – [Year Completed]</p>
+            <p>Relevant coursework: [Course 1], [Course 2], [Course 3]</p>
+          </div>
+
+          <div class="edu-card">
+            <h3>[Certification / Training / Relevant Program]</h3>
+            <p><strong>[Provider / Institution]</strong></p>
+            <p>[Year or Duration]</p>
+            <p>Focus areas: [Topic 1], [Topic 2], [Topic 3]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <h3>Let's Connect</h3>
+            <p>
+              I’m open to opportunities, collaborations, and conversations about [your field or interests].
+            </p>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="mailto:[your.email@example.com]">Email Me</a>
+            <a class="btn btn-secondary" href="[LinkedIn URL]">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © [Year] [Your Name] | All rights reserved
+    </div>
+  </footer>
+</body>
+</html>
